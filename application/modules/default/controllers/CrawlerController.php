@@ -27,24 +27,18 @@ class CrawlerController extends Site_Default_Controller
 			// therefore we attempt to sanitize a bit more (remove weird characters)
 			$urlValue = $this->view->sanitize($postData["siteurl"]);
 
-			try {
-				$importManager = new Crawler_Import_Manager();
-				$assets = $importManager->getAssets($urlValue);
+			$importManager = new Crawler_Import_Manager();
+			$assets = $importManager->getAssets($urlValue);
 
-				$dbBackend = Crawler_Writer::factory('Db');
-				$dbBackend->setData($assets);
-				$csvBackend = Crawler_Writer::factory('Csv');
-				$csvBackend->setData($assets);
-				$pdfBackend = Crawler_Writer::factory('Pdf');
-				$pdfBackend->setData($assets);
+			$dbBackend = Crawler_Writer::factory('Db');
+			$dbBackend->setData($assets);
+			$csvBackend = Crawler_Writer::factory('Csv');
+			$csvBackend->setData($assets);
+			$pdfBackend = Crawler_Writer::factory('Pdf');
+			$pdfBackend->setData($assets);
 
-				$this->view->assets = $assets;
-				$this->_helper->viewRenderer->setRender("crawl-result");
-
-
-			} catch (Crawler_Exception $e) {
-				die($e->getMessage().' ['.$e->getCode().']');
-			}
+			$this->view->assets = $assets;
+			$this->_helper->viewRenderer->setRender("crawl-result");
 
 		}
 		$this->view->assetsForm = $assetsForm;
@@ -52,22 +46,22 @@ class CrawlerController extends Site_Default_Controller
 	}
 
 	public function resultsAction() {
+
 		$request = $this->getRequest();
+
+		// get the format, check whether we support it, prepare for initialization (capitalize first letter in string)
 		$format = $request->getParam("format","db");
 		if (!in_array(ucfirst($format), Crawler_Reporter::$frontends)) throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::FORMAT_UNSUPPORTED);
 		$format = ucfirst($format);
+
+		// get the cache key from the request, clean it
 		$cacheKey = $request->getParam("key");
 		if (!isset($cacheKey))  throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::CACHE_INVALID);
-		try {
+		$cacheKey = preg_replace("/[^A-Za-z0-9]/", "", $cacheKey);
 
-			$frontend = Crawler_Reporter::factory($format);
-			$assets = $frontend->getData($cacheKey);
-			$this->view->assets = $assets;
-
-		} catch (Crawler_Reporter_Exception $e) {
-			die($e->getMessage().' ['.$e->getCode().']');
-		}
-
+		$frontend = Crawler_Reporter::factory($format);
+		$assets = $frontend->getData($cacheKey);
+		$this->view->assets = $assets;
 
 	}
 

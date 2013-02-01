@@ -9,8 +9,13 @@ abstract class Crawler_Reporter_Core {
 		if (!isset($cacheKey)) {
 			throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::CACHE_INVALID);
 		}
+
+		// attempt to load from cache (testing key validity)
+		$data = Plugins_Cache::$cacheInstance->load($cacheKey);
+		if ( !isset($data) || ($data === false) ) throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::CACHE_INVALID);
+
 		$this->_cacheKey = $cacheKey;
-		$this->output();
+		return $this->output();
 
 	}
 

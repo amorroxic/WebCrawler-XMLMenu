@@ -1,0 +1,17 @@
+<?php if (is_array($this->assets) && count($this->assets)>0) : ?>
+<?php echo "<h1>Asset report for ".$this->assets[0]["url"]."</h1>";?>
+<table>
+	<tr>
+		<td>Asset</td>
+		<td>Asset appearance</td>
+	</tr>
+	<?php foreach ($this->assets as $asset) : ?>
+	<tr>
+		<td><a href="<?=$asset["asset"];?>" target="_blank"><?=$this->textTrim($asset["asset"],60);?></a></td>
+		<td><?=$asset["count"];?></td>
+	</tr>
+	<?php endforeach; ?>
+</table>
+<?php else : ?>
+	No records were found
+<?php endif; ?>
