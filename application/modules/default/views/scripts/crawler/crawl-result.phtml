@@ -1,0 +1,15 @@
+<?php if ($this->assets["cached"]) : ?>
+<h1>Hey, I had that in cache:</h1>
+<?php else: ?>
+<h1>Result of your search (cached for 10 minutes from now on):</h1>
+<?php endif;?>
+
+<?php
+$pdfLink = $this->url(array("controller"=>"crawler", "action"=>"results","format"=>"pdf","key"=>$this->assets["key"]),null,true);
+$csvLink = $this->url(array("controller"=>"crawler", "action"=>"results","format"=>"csv","key"=>$this->assets["key"]),null,true);
+$dbLink = $this->url(array("controller"=>"crawler", "action"=>"results","format"=>"list","key"=>$this->assets["key"]),null,true);
+?>
+
+
+<a href="<?=$pdfLink;?>">Download PDF</a> | <a href="<?=$csvLink;?>">Download CSV</a> | <a href="<?=$dbLink;?>">View List</a>
+

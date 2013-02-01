@@ -1,0 +1,13 @@
+Disclaimer
+==========
+Text in general and tables especially are a pretty major issue with Zend_Pdf -
+Computing font sizes, line breaks and what not. Therefore I've used a 3rd party library which takes care of word wraps, table enclosures, everything needed in order to generate a decent looking pdf file. Preferred to use the time to develop more of this test application. Not sure that's okay with you guys but better the honesty and give this guy the credit he deserves.
+
+Adrian M, Jan 31, 2013
+
+Credits
+=======
+
+Package: SirShurf_Pdf_TableSet
+Author: Alex (Shurf) Frenkel
+Link: https://github.com/sirshurf/Zend-Framework-PDF-Table-Helper

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu guid="pg-1" site="FTP" generated="1359113978" page_title_root="Online Poker at Full Tilt Poker">
+  <menuitem uid="1" title="Download" template="no-html-blank" type="hidden" default="true" xml="page_1" guid="pg-1">
+    <url address="/download-poker" tstamp="1239115054"/>
+  </menuitem>
+  <menuitem uid="10" title="Online Poker" template="rd-index" override="true" type="normal" default="true" xml="page_10" guid="pg-10">
+    <url address="/" tstamp="1172248518"/>
+  </menuitem>
+  <menuitem uid="8" title="Download" template="rd-download" type="normal" default="true" xml="page_8" guid="pg-8">
+    <url address="/download-poker" tstamp="1240846895"/>
+    <menuitem uid="923" title="Download" template="download" type="hidden" default="true" xml="page_923" guid="pg-923">
+      <url address="/how-to-play"/>
+<menuitem uid="13455" title="Download - Google IE" template="rd-affiliates-download" type="normal" default="true" xml="page_13455" guid="pg-13455">
+        <url address="/poker-download/ie" tstamp="1348501228"/>
+		<menuitem uid="13455" title="Download Rules" template="rd-affiliates-download" type="hidden" default="true" xml="page_13455" guid="pg-13455">
+        		<url address="/poker-download/ie/rules" tstamp="1348501228"/>
+      		</menuitem>
+      </menuitem>
+      <menuitem uid="12872" title="Download - Google UK" template="rd-affiliates-download" type="hidden" default="true" xml="page_12872" guid="pg-12872">
+        <url address="/poker-download/google-uk" tstamp="1348501405"/>
+      </menuitem>
+      <menuitem uid="13457" title="Download - Google AT" template="rd-affiliates-download" type="normal" default="true" xml="page_13457" guid="pg-13457">
+        <url address="/poker-download/google-at" tstamp="1348501466"/>
+      </menuitem>
+      <menuitem uid="12873" title="Download - Yahoo UK" template="rd-affiliates-download" type="hidden" default="true" xml="page_12873" guid="pg-12873">
+        <url address="/poker-download/yahoo-uk" tstamp="1348501529"/>
+      </menuitem>
+      <menuitem uid="12874" title="Download - Yahoo ES" template="rd-affiliates-download" type="normal" default="true" xml="page_12874" guid="pg-12874">
+        <url address="/poker-download/yahoo-es" tstamp="1348501583"/>
+      </menuitem>
+    </menuitem>
+    <menuitem uid="913" title="Online Poker at Full Tilt Poker &#x2013; Thank you for Downloading" template="white-1col" type="hidden" default="true" xml="page_913" guid="pg-913">
+      <url address="/poker-download/thank-you" tstamp="1348501621"/>
+      <menuitem uid="946" title="Thank you for downloading" template="rd-download" override="true" type="hidden" default="true" xml="page_946" guid="pg-946">
+        <url address="/poker-download/thank-you-ff-mac" tstamp="1348501671"/>
+      </menuitem>
+      <menuitem uid="915" title="Thank you for downloading" template="rd-download" override="true" type="normal" default="true" xml="page_915" guid="pg-915">
+        <url address="/poker-download/thank-you-safari" tstamp="1348501712"/>
+      </menuitem>
+      <menuitem uid="914" title="Thank you for downloading" template="rd-download" override="true" type="hidden" default="true" xml="page_914" guid="pg-914">
+        <url address="/poker-download/thank-you-ie" tstamp="1348501760"/>
+      </menuitem>
+      <menuitem uid="828" title="Thank you for downloading" template="rd-download" override="true" type="normal" default="true" xml="page_828" guid="pg-828">
+        <url address="/poker-download/thank-you-ff" tstamp="1348502011"/>
+      </menuitem>
+      <menuitem uid="24023534" title="Thank you for downloading" template="rd-download" override="true" type="hidden" default="true" xml="page_24023534" guid="pg-24023534">
+        <url address="/poker-download/thank-you-win8" tstamp="1352132751"/>
+      </menuitem>
+    </menuitem>
+  </menuitem>
+  <menuitem uid="7" title="How to Play" template="grey-2col" override="true" type="normal" image="/images/common/en/titles/how-to-play/how-to-play.gif" default="true" xml="page_7" guid="pg-7">
+    <url address="/poker" tstamp="1348243435"/>
+    <menuitem uid="81" title="Getting Started" template="grey-2col" override="true" type="normal" default="true" xml="page_81" guid="pg-81">
+      <url address="/poker/getting-started" tstamp="1348243500"/>
+    </menuitem>
+    <menuitem uid="8020299" title="Beginner's Tutorials" template="grey-2col" override="true" domain="1" type="normal" default="true" xml="page_8020299" guid="pg-8020299">
+      <url address="/beginners-tutorials" tstamp="1294323679"/>
+    </menuitem>
+    <menuitem uid="16" title="Our Software" template="grey-2col" override="true" type="normal" default="true" xml="page_16" guid="pg-16">
+      <url address="/poker/software" tstamp="1348243581"/>
+      <menuitem uid="14561" title="Take Our Tour" template="rd-2col" override="true" type="normal" default="true" xml="page_14561" guid="pg-14561">
+        <url address="/poker/software/tour" tstamp="1348243614"/>
+      </menuitem>
+      <menuitem uid="24022844" title="New Features" template="rd-2col-promo" override="true" domain="1" type="normal" default="true" xml="page_24022844" guid="pg-24022844">
+        <url address="/poker/software/new-features" tstamp="1348243652"/>
+        <menuitem uid="24022864" title="Features 2011" template="rd-2col" override="true" type="normal" default="true" xml="page_24022864" guid="pg-24022864">
+          <url address="/poker/software/new-features/2011" tstamp="1348243687"/>
+        	<menuitem uid="2402286411" title="Features 2011 Rules" template="rd-2col" override="true" type="normal" default="true" xml="page_2402286411" guid="pg-2402286411">
+          		<url address="/poker/software/new-features/2011/Rules" tstamp="1348243687"/>
+        	</menuitem>
+        </menuitem>
+        <menuitem uid="24022441" title="Features 2010" template="rd-2col" override="true" type="normal" default="true" xml="page_24022441" guid="pg-24022441">
+          <url address="/poker/software/new-features/2010" tstamp="1348243719"/>
+        </menuitem>
+        <menuitem uid="24022444" title="Features 2009" template="rd-2col" override="true" type="hidden" default="true" xml="page_24022444" guid="pg-24022444">
+          <url address="/poker/software/new-features/2009" tstamp="1348243753"/>
+        </menuitem>
+        <menuitem uid="24022446" title="Features 2008" template="rd-2col" override="true" type="normal" default="true" xml="page_24022446" guid="pg-24022446">
+          <url address="/poker/software/new-features/2008" tstamp="1348243799"/>
+        </menuitem>
+        <menuitem uid="24022448" title="Features 2007" template="rd-2col" override="true" type="hidden" default="true" xml="page_24022448" guid="pg-24022448">
+          <url address="/poker/software/new-features/2007" tstamp="1348243837"/>
+        </menuitem>
+      </menuitem>
+      <menuitem uid="120" title="Table" template="grey-2col" override="true" type="normal" default="true" xml="page_120" guid="pg-120">
+        <url address="/poker/software/table" tstamp="1348243879"/>
+      </menuitem>
+      <menuitem uid="122" title="Special Features" template="grey-2col" override="true" type="normal" default="true" xml="page_122" guid="pg-122">
+        <url address="/poker/software/special-features" tstamp="1348243941"/>
+      </menuitem>
+      <menuitem uid="14429" title="Customize Your Experience" template="rd-2col" override="true" type="normal" default="true" xml="page_14429" guid="pg-14429">
+        <url address="/poker/software/customize" tstamp="1348243988"/>
+     </menuitem>
+  </menuitem>
+</menuitem>
+</menu>
