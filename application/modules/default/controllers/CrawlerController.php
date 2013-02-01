@@ -55,9 +55,9 @@ class CrawlerController extends Site_Default_Controller
 		$request = $this->getRequest();
 		$format = $request->getParam("format","db");
 		if (!in_array(ucfirst($format), Crawler_Reporter::$frontends)) throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::FORMAT_UNSUPPORTED);
+		$format = ucfirst($format);
 		$cacheKey = $request->getParam("key");
 		if (!isset($cacheKey))  throw new Crawler_Reporter_Exception(Crawler_Reporter_Exception::CACHE_INVALID);
-
 		try {
 
 			$frontend = Crawler_Reporter::factory($format);

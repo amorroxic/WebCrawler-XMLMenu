@@ -25,7 +25,7 @@ class Crawler_Reporter_Csv extends Crawler_Reporter_Core {
 			header("Cache-Control: private",false); // required for certain browsers
 			header("Content-Type: $contentType");
 			// change, added quotes to allow spaces in filenames, by Rajkumar Singh
-			header("Content-Disposition: attachment; filename=\"".basename($filename)."\";" );
+			header("Content-Disposition: attachment; filename=\""."cached-assets.csv"."\";" );
 			header("Content-Transfer-Encoding: binary");
 			header("Content-Length: ".filesize($filename));
 			readfile($filename);
