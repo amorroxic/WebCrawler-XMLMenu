@@ -32,8 +32,4 @@ class Crawler_Writer_Csv extends Crawler_Writer_Core {
 
 	}
 
-	public function output() {
-
-	}
-
 }

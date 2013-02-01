@@ -28,6 +28,5 @@ abstract class Crawler_Writer_Core {
 	}
 
 	protected abstract function store();
-	public abstract function output();
 
 }

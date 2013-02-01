@@ -55,8 +55,4 @@ class Crawler_Writer_Pdf extends Crawler_Writer_Core {
 
 	}
 
-	public function output() {
-
-	}
-
 }

@@ -17,8 +17,4 @@ class Crawler_Writer_Db extends Crawler_Writer_Core {
 
 	}
 
-	public function output() {
-
-	}
-
 }
