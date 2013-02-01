@@ -1,0 +1,110 @@
+Hello,
+
+This project implements two things: a small web crawler and a xml-sourced menu.
+It is built with PhP on the server side, uses Zend Framework for the back-end and implements the Model-View-Controller design pattern.
+
+The following text includes considerations on:
+
+1. Demonstration links and sources
+2. General overview
+3. Design patterns
+4. Architecture
+5. Re-usable components
+
+Of course, I am available for any clarifications which may be needed.
+
+1. Demonstration links and sources
+==================================
+The sources of the application are freely available on GitHub:
+https://github.com/amorroxic/WebCrawler-XMLMenu
+
+Front-end demo:
+http://rational.nouauzina.ro/
+
+Crawler:
+http://rational.nouauzina.ro/crawler (my own tests were against http://www.rte.ie/ and http://www.cinemagia.ro/)
+
+Menu:
+http://rational.nouauzina.ro/menu
+
+2. General overview
+===================
+As a proof of concept the crawler currently fetches <A> and <IMG> tags. The parser could easily be extended to fetch any other type of html tag or to fetch directly all elements' href/src attributes inside the requested webpage. Currently it searches the following file types: 'jpg','jpeg','png','gif','xml','txt','doc','pdf','mov','mp3','mp4','svg'. These allowed extensions are being defined in this model: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Import/Manager.php
+
+All requests (asset list found while analyzing a webpage and the xml data source) are being cached locally (inside the cache folder).
+The cache for now is a simple file-cache but can use any other back-end (memcached, database, etc)
+Contents inside the cache files are automatically serialized and the time after which the cache expires is defined in this file: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/configuration/cache.conf.php (lifetime section, currently set to 10 minutes)
+
+A database is needed because some of the crawler's components (the DB writer, the DB Reporter) need to store/fetch data from it.
+A dump/structure for this database is here: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/database-dump/database/rational.sql
+
+For the menu, the XML source data file is this one: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/configuration/s-menu.xml
+The following folders need to have write access: /logs (logging site errors in files), /cache (storing caches), /storage/pdf, /storage/csv (csv/pdf file storage).
+
+3. Design patterns
+==================
+The application implements the MVC design pattern. It has only one module - default.
+Most of the classes reside outside the webroot for added security and a xml source file is present (required for generating the menu).
+
+The typical ZF configuration is here: https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/modules/default
+The two essential controllers are the CrawlerController and the MenuController.
+
+There are two factories within the crawler's models: the Writer (storing assets) and the Reporter (retrieving parsed assets) model. They each expose three possible instantiables: PDF, CSV and DB. These instantiables commonly extend a common abstract core class (which initializes the data) and extend the core class with their own specific routines on implementation.
+
+4.Architecture
+==============
+
+4a. The crawler:
+----------------
+The two factories and their components are at these locations:
+
+Factories:
+https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Writer.php
+https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Reporter.php
+
+Reporter core class:
+https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Reporter/Core.php
+Reporter implementations
+https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/modules/default/models/Crawler/Reporter
+
+Writer core class:
+https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Writer/Core.php
+Writer implementations
+https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Writer
+
+Websites' import and parse routines are being defined inside an importer model. This model uses curl to receive website data and applies regexp over this data in order to fetch assets from it. The model: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/models/Crawler/Import/Manager.php
+
+For the input form (requesting user for a url) two components were implemented:
+The OOP form (extending Zend Form): https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/library/Site/Form/Assets.php
+and an URL validator for this form: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/library/Site/Validator/URL.php
+
+Custom exceptions are being handled inside the ErrorController. If there are exceptions generated by the app they are being presented to the user. If the exeptions are generic Exceptions/Zend exceptions (wrong url, etc) only a standard message is being shown.
+
+4b. The menu:
+-------------
+The menu has only one model: its menu manager class. When data is being requested the manager consults the cache. If no match is found it proceeds to load the resources from the XML source file, parses them and stores them inside the cache. Cache lifetime is defined as described in section 2. Next time the page is being requested, the cache would be available.
+
+The menu itself is being generated by a menu view helper (instantiated by the menu view script): https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/modules/default/views/helpers/MenuRenderer.php
+
+On front-end, a CSS file takes care of coloring and adding interaction to this menu (hovers, show/hides, etc)
+
+5. Re-usable components
+=======================
+Wherever possible, a strong adhesion towards the OOP principles is being implemented. Classes inherit each other and there are lots of components freely available to be reused:
+
+- the data models:
+https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/modules/default/models
+
+- controller plugins (cache, profiler, gzipped output):
+https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/library/Plugins
+
+- view helpers (slug generation / sanitizing data / trim)
+https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/library/Helpers
+
+- url form validator
+https://github.com/amorroxic/WebCrawler-XMLMenu/tree/master/application/library/Site/Validator
+
+All controllers extend base controllers which handle all the low-level model instantiations and various other common tasks.
+The base controllers are found here: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/library/Site/Controller.php
+and here: https://github.com/amorroxic/WebCrawler-XMLMenu/blob/master/application/library/Site/Default/Controller.php
+
